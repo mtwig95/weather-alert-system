@@ -49,4 +49,31 @@ router.delete('/:id', async function (req, res) {
     }
 });
 
+router.put('/:id', async function (req, res) {
+    const { location, parameter, operator, threshold, description } = req.body;
+
+    if (!location || !parameter || !operator || threshold === undefined) {
+        res.status(400).json({ error: 'Missing required fields' });
+        return;
+    }
+
+    try {
+        const updated = await Alert.findByIdAndUpdate(
+            req.params.id,
+            { location, parameter, operator, threshold, description },
+            { new: true }
+        );
+
+        if (!updated) {
+            res.status(404).json({ error: 'Alert not found' });
+            return;
+        }
+
+        res.json(updated);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to update alert' });
+    }
+});
+
 export default router;
