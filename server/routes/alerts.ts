@@ -34,4 +34,19 @@ router.get('/', async function(req, res)  {
     }
 });
 
+router.delete('/:id', async function (req, res) {
+    try {
+        const deleted = await Alert.findByIdAndDelete(req.params.id);
+        if (!deleted) {
+            res.status(404).json({ error: 'Alert not found' });
+            return;
+        }
+
+        res.status(204).send();
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to delete alert' });
+    }
+});
+
 export default router;

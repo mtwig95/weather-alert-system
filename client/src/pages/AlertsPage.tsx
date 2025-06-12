@@ -27,7 +27,7 @@ export const AlertsPage = () => {
     return (
         <div className="max-w-3xl mx-auto px-4 space-y-6">
             <CreateAlertForm onAlertCreated={fetchAlerts} />
-            <AlertList alerts={alerts} loading={loading} />
+            <AlertList alerts={alerts} loading={loading} setAlerts={setAlerts} />
         </div>
     );
 };
