@@ -25,6 +25,10 @@ router.get('/', async (req, res) => {
 
     const values = data?.data?.timelines?.[0]?.intervals?.[0]?.values;
 
+    if (!values) {
+      res.status(404).json({ error: 'Weather data not found for this location' });
+    }
+
     res.json({
       location,
       temperature: values?.temperature,
