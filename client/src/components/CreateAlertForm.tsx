@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
-import {StatusMessage} from "../components/StatusMessage.tsx";
+import {StatusMessage} from "./StatusMessage.tsx";
 
-export const Alerts = () => {
+type CreateAlertFormProps = {
+    onAlertCreated: () => Promise<void>;
+};
+
+export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
     const [location, setLocation] = useState('');
     const [parameter, setParameter] = useState('temperature');
     const [operator, setOperator] = useState('>');
@@ -27,9 +31,10 @@ export const Alerts = () => {
             const data = await res.json();
 
             if (!res.ok) {
+                // noinspection ExceptionCaughtLocallyJS
                 throw new Error(data.error || 'Failed to save alert');
             }
-
+            onAlertCreated();
             setSuccess(true);
             setLocation('');
             setParameter('temperature');
@@ -114,8 +119,8 @@ export const Alerts = () => {
                 Save Alert
             </button>
         </form>
-        {loading && <StatusMessage message="Saving alert..." type="loading" withSpinner />}
-        {error && <StatusMessage message={error} type="error" />}
-        {success && <StatusMessage message="✅ Alert saved!" type="success" />}
+        {loading && <StatusMessage message="Saving alert..." type="loading" withSpinner/>}
+        {error && <StatusMessage message={error} type="error"/>}
+        {success && <StatusMessage message="✅ Alert saved!" type="success"/>}
     </div>);
 };

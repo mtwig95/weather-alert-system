@@ -1,7 +1,5 @@
 export const CurrentState = () => {
-
-    return (
-        <div>
-        </div>
-    );
+  return (
+ <div></div>
+  );
 };
