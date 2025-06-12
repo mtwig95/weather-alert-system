@@ -24,7 +24,7 @@ TOMORROW_API_KEY=your_api_key_here
 
 ### 3. Run the server
 ```bash
-npx ts-node server/server.ts
+npx ts-node server.ts
 ```
 
 ### 4. Test

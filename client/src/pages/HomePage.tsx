@@ -50,27 +50,33 @@ export const HomePage = () => {
   };
 
   return (
-    <div>
-      <h2>🌤️ Current Weather</h2>
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      <h2 className="text-2xl font-semibold mb-4 text-center">🌤️ Current Weather</h2>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+      <form onSubmit={handleSubmit} className="flex gap-2 mb-6 justify-center">
         <input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter city name"
+          className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 w-2/3 sm:w-1/2"
         />
-        <button type="submit">Check</button>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
+        >
+          Check
+        </button>
       </form>
 
-      {loading && <p>Loading weather...</p>}
+      {loading && <p className="text-center text-gray-500">Loading weather...</p>}
       {error && <ErrorMessage message={error} />}
       {weather && (
-        <ul>
-          <li>📍 Location: {weather.location}</li>
-          <li>🌡️ Temperature: {weather.temperature}°C</li>
-          <li>🌬️ Wind Speed: {weather.windSpeed} km/h</li>
-          <li>🌧️ Precipitation: {weather.precipitation} mm/h</li>
-        </ul>
+        <div className="bg-white shadow-md rounded-lg p-4 space-y-2 text-gray-800">
+          <p>📍 <span className="font-semibold">Location:</span> {weather.location}</p>
+          <p>🌡️ <span className="font-semibold">Temperature:</span> {weather.temperature}°C</p>
+          <p>🌬️ <span className="font-semibold">Wind Speed:</span> {weather.windSpeed} km/h</p>
+          <p>🌧️ <span className="font-semibold">Precipitation:</span> {weather.precipitation} mm/h</p>
+        </div>
       )}
     </div>
   );
