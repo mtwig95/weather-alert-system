@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {ErrorMessage} from "../components/ ErrorMessage.tsx";
 
 type WeatherData = {
   temperature: number;
@@ -62,7 +63,7 @@ export const HomePage = () => {
       </form>
 
       {loading && <p>Loading weather...</p>}
-      {error && <p>{error}</p>}
+      {error && <ErrorMessage message={error} />}
       {weather && (
         <ul>
           <li>📍 Location: {weather.location}</li>
