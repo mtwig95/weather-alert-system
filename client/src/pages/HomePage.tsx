@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {ErrorMessage} from "../components/ ErrorMessage.tsx";
+import {StatusMessage} from "../components/StatusMessage.tsx";
 
 type WeatherData = {
   temperature: number;
@@ -68,8 +68,9 @@ export const HomePage = () => {
         </button>
       </form>
 
-      {loading && <p className="text-center text-gray-500">Loading weather...</p>}
-      {error && <ErrorMessage message={error} />}
+      {loading && <StatusMessage message="Loading weather..." type="loading" withSpinner />}
+      {error && <StatusMessage message={error} type="error" />}
+
       {weather && (
         <div className="bg-white shadow-md rounded-lg p-4 space-y-2 text-gray-800">
           <p>📍 <span className="font-semibold">Location:</span> {weather.location}</p>
