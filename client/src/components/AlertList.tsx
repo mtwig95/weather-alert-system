@@ -45,7 +45,7 @@ export const AlertList = ({ alerts, loading, setAlerts }: AlertListProps) => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-6 text-white">📋 Saved Alerts</h2>
+            <h2 className="text-2xl font-bold mb-6 text-text">📋 Saved Alerts</h2>
 
             {loading && <StatusMessage message="Loading alerts..." type="loading" withSpinner />}
             {!loading && alerts.length === 0 && (
@@ -60,23 +60,23 @@ export const AlertList = ({ alerts, loading, setAlerts }: AlertListProps) => {
                             editingId === alert._id && editForm ? (
                                 <li
                                     key={alert._id}
-                                    className="bg-[#1E2636] p-4 rounded-lg shadow-md space-y-3 text-white"
+                                    className="bg-card p-4 rounded-lg shadow-md space-y-3 text-text"
                                 >
                                     <input
                                         value={editForm.location}
                                         onChange={(e) => setEditForm({ ...editForm, location: e.target.value })}
-                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-text placeholder-gray-400 focus:outline-none"
                                     />
                                     <input
                                         type="email"
                                         value={editForm.email}
                                         onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-text placeholder-gray-400 focus:outline-none"
                                     />
                                     <select
                                         value={editForm.parameter}
                                         onChange={(e) => setEditForm({ ...editForm, parameter: e.target.value })}
-                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-white"
+                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-text"
                                     >
                                         <option value="temperature">🌡️ Temperature</option>
                                         <option value="windSpeed">🌬️ Wind Speed</option>
@@ -88,7 +88,7 @@ export const AlertList = ({ alerts, loading, setAlerts }: AlertListProps) => {
                                             onChange={(e) =>
                                                 setEditForm({ ...editForm, operator: e.target.value as '>' | '<' })
                                             }
-                                            className="w-1/3 bg-[#1A2233] px-3 py-2 rounded-lg text-white"
+                                            className="w-1/3 bg-[#1A2233] px-3 py-2 rounded-lg text-text"
                                         >
                                             <option value=">">&gt;</option>
                                             <option value="<">&lt;</option>
@@ -99,13 +99,13 @@ export const AlertList = ({ alerts, loading, setAlerts }: AlertListProps) => {
                                             onChange={(e) =>
                                                 setEditForm({ ...editForm, threshold: Number(e.target.value) })
                                             }
-                                            className="flex-1 bg-[#1A2233] px-3 py-2 rounded-lg text-white"
+                                            className="flex-1 bg-[#1A2233] px-3 py-2 rounded-lg text-text"
                                         />
                                     </div>
                                     <input
                                         value={editForm.description}
                                         onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
-                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-white placeholder-gray-400"
+                                        className="w-full bg-[#1A2233] px-3 py-2 rounded-lg text-text placeholder-gray-400"
                                     />
                                     <div className="flex justify-end gap-3 mt-2">
                                         <button
@@ -125,7 +125,7 @@ export const AlertList = ({ alerts, loading, setAlerts }: AlertListProps) => {
                             ) : (
                                 <li
                                     key={alert._id}
-                                    className="bg-[#1E2636] p-4 rounded-lg shadow-md text-white space-y-1"
+                                    className="bg-card p-4 rounded-lg shadow-md text-text space-y-1"
                                 >
                                     <div className="flex justify-between items-center">
                                         <h3 className="font-semibold text-lg">{alert.location}</h3>

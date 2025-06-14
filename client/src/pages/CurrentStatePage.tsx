@@ -25,7 +25,7 @@ export const CurrentStatePage = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#0B1120] text-white flex items-center justify-center font-sans">
+            <div className="min-h-screen bg-background text-text flex items-center justify-center font-sans">
                 <p>Loading current state...</p>
             </div>
         );
@@ -34,7 +34,7 @@ export const CurrentStatePage = () => {
     const triggeredAlerts = alerts.filter((alert) => alert.status === 'triggered');
 
     return (
-        <div className="min-h-screen bg-[#0B1120] text-white px-6 py-10 font-sans">
+        <div className="min-h-screen bg-background text-text px-6 py-10 font-sans">
             <div className="max-w-4xl mx-auto space-y-6">
                 <h1 className="text-3xl font-bold text-center">🌦️ Current Alert State</h1>
 

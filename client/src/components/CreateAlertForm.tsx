@@ -45,7 +45,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
     };
 
     return (
-        <div className="text-white font-sans">
+        <div className="text-text font-sans">
             <h2 className="text-2xl font-bold mb-6 text-center">⚠️ Create New Alert</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -57,7 +57,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="e.g. Tel Aviv"
                         required
-                        className="w-full bg-[#1A2233] text-white placeholder-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full bg-[#1A2233] text-text placeholder-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -69,7 +69,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@example.com"
                         required
-                        className="w-full bg-[#1A2233] text-white placeholder-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full bg-[#1A2233] text-text placeholder-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -78,7 +78,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                     <select
                         value={parameter}
                         onChange={(e) => setParameter(e.target.value)}
-                        className="w-full bg-[#1A2233] text-white px-4 py-2 rounded-lg shadow-sm focus:outline-none"
+                        className="w-full bg-[#1A2233] text-text px-4 py-2 rounded-lg shadow-sm focus:outline-none"
                     >
                         <option value="temperature">🌡️ Temperature</option>
                         <option value="windSpeed">🌬️ Wind Speed</option>
@@ -92,7 +92,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                         <select
                             value={operator}
                             onChange={(e) => setOperator(e.target.value)}
-                            className="w-full bg-[#1A2233] text-white px-3 py-2 rounded-lg shadow-sm focus:outline-none"
+                            className="w-full bg-[#1A2233] text-text px-3 py-2 rounded-lg shadow-sm focus:outline-none"
                         >
                             <option value=">">&gt;</option>
                             <option value="<">&lt;</option>
@@ -106,7 +106,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                             value={threshold}
                             onChange={(e) => setThreshold(Number(e.target.value))}
                             required
-                            className="w-full bg-[#1A2233] text-white px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full bg-[#1A2233] text-text px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
                 </div>
@@ -118,13 +118,13 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="e.g. Hot day alert"
-                        className="w-full bg-[#1A2233] text-white placeholder-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none"
+                        className="w-full bg-[#1A2233] text-text placeholder-gray-500 px-4 py-2 rounded-lg shadow-sm focus:outline-none"
                     />
                 </div>
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 ounded-2xl shadow-lg transition"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-text font-semibold px-6 py-3 ounded-2xl shadow-lg transition"
                 >
                     Save Alert
                 </button>

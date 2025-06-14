@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
     return (
-    <header className="bg-[#1A2233] text-white shadow-sm">
+    <header className="bg-[#1A2233] text-text shadow-sm">
       <nav className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center font-sans">
         <div className="text-lg font-bold tracking-wide">🌩️ Weather Alerts</div>
 
@@ -13,7 +13,7 @@ export const NavBar = () => {
                     className={({ isActive }) =>
               isActive
                 ? 'text-blue-400 border-b-2 border-blue-400 pb-0.5'
-                : 'text-gray-300 hover:text-white transition'
+                : 'text-gray-300 hover:text-text transition'
                     }
                 >
                     Home
@@ -23,7 +23,7 @@ export const NavBar = () => {
                     className={({ isActive }) =>
               isActive
                 ? 'text-blue-400 border-b-2 border-blue-400 pb-0.5'
-                : 'text-gray-300 hover:text-white transition'
+                : 'text-gray-300 hover:text-text transition'
                     }
                 >
                     Alerts
@@ -33,7 +33,7 @@ export const NavBar = () => {
                     className={({ isActive }) =>
               isActive
                 ? 'text-blue-400 border-b-2 border-blue-400 pb-0.5'
-                : 'text-gray-300 hover:text-white transition'
+                : 'text-gray-300 hover:text-text transition'
                     }
                 >
                     Current State

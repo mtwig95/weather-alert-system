@@ -25,15 +25,15 @@ export const AlertsPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#0B1120] text-white px-4 py-10 font-sans">
+        <div className="min-h-screen bg-background text-text px-4 py-10 font-sans">
             <div className="max-w-4xl mx-auto space-y-8">
                 <h1 className="text-3xl font-bold text-center">🔔 Weather Alerts</h1>
 
-                <div className="bg-[#1E2636] rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                     <CreateAlertForm onAlertCreated={fetchAlerts} />
                 </div>
 
-                <div className="bg-[#1E2636] rounded-lg shadow-lg p-6">
+                <div className="bg-card rounded-lg shadow-lg p-6">
                     <AlertList alerts={alerts} loading={loading} setAlerts={setAlerts} />
                 </div>
             </div>

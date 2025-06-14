@@ -48,7 +48,7 @@ export const HomePage = () => {
   };
 
   return (
-      <div className="min-h-screen bg-[#0B1120] text-white font-sans px-4 py-8">
+      <div className="min-h-screen bg-background text-text font-sans px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center">🌤️ Current Weather</h1>
 
@@ -57,11 +57,11 @@ export const HomePage = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Enter city name"
-                className="px-4 py-2 rounded-lg bg-[#1A2233] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-1/2"
+                className="px-4 py-2 rounded-lg bg-[#1A2233] text-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-1/2"
             />
             <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium shadow transition"
+                className="bg-blue-500 hover:bg-blue-600 text-text px-6 py-2 rounded-lg font-medium shadow transition"
             >
               Check
             </button>
@@ -71,7 +71,7 @@ export const HomePage = () => {
           {error && <StatusMessage message={error} type="error" />}
 
           {weather && (
-              <div className="bg-[#1E2636] rounded-lg shadow-lg p-6 space-y-4 w-full sm:w-2/3 mx-auto">
+              <div className="bg-card rounded-lg shadow-lg p-6 space-y-4 w-full sm:w-2/3 mx-auto">
                 <div className="flex items-center justify-between text-sm text-gray-300">
                   <span>📍 Location</span>
                   <span>{weather.location}</span>
