@@ -12,6 +12,7 @@ export const CreateAlertForm = ({onAlertCreated}: CreateAlertFormProps) => {
     const [operator, setOperator] = useState('>');
     const [threshold, setThreshold] = useState(0);
     const [description, setDescription] = useState('');
+    const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -23,8 +24,7 @@ export const CreateAlertForm = ({onAlertCreated}: CreateAlertFormProps) => {
         setError(null);
 
         try {
-            const res = await api.createAlert(location, parameter, operator, threshold, description);
-
+      const res = await api.createAlert(location, parameter, operator, threshold, description, email);
             const data = await res.json();
 
             if (!res.ok) {
@@ -38,6 +38,7 @@ export const CreateAlertForm = ({onAlertCreated}: CreateAlertFormProps) => {
             setOperator('>');
             setThreshold(0);
             setDescription('');
+            setEmail('');
         } catch (err: any) {
             setError(err.message || 'Unexpected error');
         } finally {
@@ -58,6 +59,17 @@ export const CreateAlertForm = ({onAlertCreated}: CreateAlertFormProps) => {
                     required
                     className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
+            </div>
+            <div>
+              <label className="block mb-1 font-medium">Email for notifications</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
             </div>
 
             <div>

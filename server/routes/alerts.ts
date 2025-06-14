@@ -1,36 +1,36 @@
 import express from 'express';
-import { Alert } from '../models/Alert';
+import {Alert} from '../models/Alert';
 
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    const { location, parameter, operator, threshold, description } = req.body;
+    const {location, parameter, operator, threshold, description, email} = req.body;
 
     if (!location || !parameter || !operator || threshold === undefined) {
-    res.status(400).json({ error: 'Missing required fields' });
-    return;
+        res.status(400).json({error: 'Missing required fields'});
+        return;
     }
 
     try {
-        const alert = new Alert({ location, parameter, operator, threshold, description });
+        const alert = new Alert({location, parameter, operator, threshold, description, email});
         await alert.save();
 
-        res.status(201).json({ message: 'Alert created', alert });
-    return;
+        res.status(201).json({message: 'Alert created', alert});
+        return;
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Failed to create alert' });
-    return;
+        res.status(500).json({error: 'Failed to create alert'});
+        return;
     }
 });
 
-router.get('/', async function(req, res)  {
+router.get('/', async function (req, res) {
     try {
         const alerts = await Alert.find();
         res.json(alerts);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Failed to fetch alerts' });
+        res.status(500).json({error: 'Failed to fetch alerts'});
     }
 });
 
@@ -38,41 +38,44 @@ router.delete('/:id', async function (req, res) {
     try {
         const deleted = await Alert.findByIdAndDelete(req.params.id);
         if (!deleted) {
-            res.status(404).json({ error: 'Alert not found' });
+            res.status(404).json({error: 'Alert not found'});
             return;
         }
 
         res.status(204).send();
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Failed to delete alert' });
+        res.status(500).json({error: 'Failed to delete alert'});
     }
 });
 
 router.put('/:id', async function (req, res) {
-    const { location, parameter, operator, threshold, description } = req.body;
+    const {location, parameter, operator, threshold, description, email} = req.body;
 
     if (!location || !parameter || !operator || threshold === undefined) {
-        res.status(400).json({ error: 'Missing required fields' });
+        res.status(400).json({error: 'Missing required fields'});
         return;
     }
 
     try {
-        const updated = await Alert.findByIdAndUpdate(
-            req.params.id,
-            { location, parameter, operator, threshold, description },
-            { new: true }
-        );
+        const updated = await Alert.findByIdAndUpdate(req.params.id, {
+            location,
+            parameter,
+            operator,
+            threshold,
+            description,
+            email
+        }, {new: true});
 
         if (!updated) {
-            res.status(404).json({ error: 'Alert not found' });
+            res.status(404).json({error: 'Alert not found'});
             return;
         }
 
         res.json(updated);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Failed to update alert' });
+        res.status(500).json({error: 'Failed to update alert'});
     }
 });
 

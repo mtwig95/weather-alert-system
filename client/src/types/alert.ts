@@ -8,6 +8,8 @@ export type Alert = {
     status: 'triggered' | 'not_triggered';
     lastChecked: string | null;
     createdAt: string;
+    email: string;
+    lastNotified: string;
 };
 
 //todo remove model

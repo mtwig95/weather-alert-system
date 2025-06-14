@@ -60,6 +60,13 @@ export const AlertList = ({alerts, loading, setAlerts}: AlertListProps) => {
                             onChange={(e) => setEditForm({...editForm, location: e.target.value})}
                             className="w-full border p-2 rounded"
                         />
+                        <input
+                            type="email"
+                            value={editForm.email}
+                            onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                            className="w-full border p-2 rounded"
+                            placeholder="Email for notifications"
+                        />
                         <select
                             value={editForm.parameter}
                             onChange={(e) => setEditForm({...editForm, parameter: e.target.value})}

@@ -7,11 +7,11 @@ export const api = {
         return res.json();
     },
 
-    createAlert: async (location: string, parameter: string, operator: string, threshold: number, description: string) => {
+    createAlert: async (location: string, parameter: string, operator: string, threshold: number, description: string, email: string) => {
         // todo: remove threshold: Number(threshold)?, add parameter as 'temperature' | 'windSpeed' | 'precipitation' , add operator as '>' | '<'
         const res = await fetch(`${BASE_URL}/alerts`, {
             method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({
-                location, parameter, operator, threshold: Number(threshold), description,
+                location, parameter, operator, threshold: Number(threshold), description, email
             }),
         });
         if (!res.ok) throw new Error("Failed to create alert");
@@ -29,6 +29,7 @@ export const api = {
     },
 
     updateAlert: async (updatedAlert: any) => {
+        console.log('updatedAlert',updatedAlert);
         const res = await fetch(`${BASE_URL}/alerts/${updatedAlert._id}`, {
             method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify(updatedAlert),
         });
