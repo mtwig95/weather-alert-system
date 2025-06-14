@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import {StatusMessage} from "./StatusMessage.tsx";
+import {api} from "../services/api.ts";
 
 type CreateAlertFormProps = {
     onAlertCreated: () => Promise<void>;
 };
 
-export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
+export const CreateAlertForm = ({onAlertCreated}: CreateAlertFormProps) => {
     const [location, setLocation] = useState('');
     const [parameter, setParameter] = useState('temperature');
     const [operator, setOperator] = useState('>');
-    const [threshold, setThreshold] = useState('');
+    const [threshold, setThreshold] = useState(0);
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -22,11 +23,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
         setError(null);
 
         try {
-            const res = await fetch('http://localhost:3000/alerts', {
-                method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
-                    location, parameter, operator, threshold: Number(threshold), description,
-                }),
-            });
+            const res = await api.createAlert(location, parameter, operator, threshold, description);
 
             const data = await res.json();
 
@@ -34,12 +31,12 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                 // noinspection ExceptionCaughtLocallyJS
                 throw new Error(data.error || 'Failed to save alert');
             }
-            onAlertCreated();
+            await onAlertCreated();
             setSuccess(true);
             setLocation('');
             setParameter('temperature');
             setOperator('>');
-            setThreshold('');
+            setThreshold(0);
             setDescription('');
         } catch (err: any) {
             setError(err.message || 'Unexpected error');
@@ -94,7 +91,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
                     <input
                         type="number"
                         value={threshold}
-                        onChange={(e) => setThreshold(e.target.value)}
+                        onChange={(e) => setThreshold(Number(e.target.value))}
                         required
                         className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />

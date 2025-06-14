@@ -5,5 +5,16 @@ export type Alert = {
     operator: '>' | '<';
     threshold: number;
     description: string;
+    status: 'triggered' | 'not_triggered';
+    lastChecked: string | null;
     createdAt: string;
+};
+
+//todo remove model
+export type NewAlert = {
+    location: string;
+    parameter: 'temperature' | 'windSpeed' | 'precipitation';
+    operator: '>' | '<';
+    threshold: number;
+    description: string;
 };
