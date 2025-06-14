@@ -1,19 +1,19 @@
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
-    const baseStyle =
-        'px-4 py-2 rounded-xl transition-colors duration-200 text-sm sm:text-base';
-    const activeStyle = 'bg-blue-500 text-white shadow-md font-semibold';
-    const inactiveStyle = 'text-gray-700 hover:bg-blue-100';
-
     return (
-        <nav className="bg-white shadow-md mb-6">
-            <div className="max-w-4xl mx-auto px-4 py-3 flex gap-3 sm:gap-6">
+    <header className="bg-[#1A2233] text-white shadow-sm">
+      <nav className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center font-sans">
+        <div className="text-lg font-bold tracking-wide">🌩️ Weather Alerts</div>
+
+        <div className="flex gap-4 text-sm font-medium">
                 <NavLink
                     to="/"
                     end
                     className={({ isActive }) =>
-                        `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
+              isActive
+                ? 'text-blue-400 border-b-2 border-blue-400 pb-0.5'
+                : 'text-gray-300 hover:text-white transition'
                     }
                 >
                     Home
@@ -21,7 +21,9 @@ export const NavBar = () => {
                 <NavLink
                     to="/alerts"
                     className={({ isActive }) =>
-                        `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
+              isActive
+                ? 'text-blue-400 border-b-2 border-blue-400 pb-0.5'
+                : 'text-gray-300 hover:text-white transition'
                     }
                 >
                     Alerts
@@ -29,12 +31,15 @@ export const NavBar = () => {
                 <NavLink
                     to="/state"
                     className={({ isActive }) =>
-                        `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
+              isActive
+                ? 'text-blue-400 border-b-2 border-blue-400 pb-0.5'
+                : 'text-gray-300 hover:text-white transition'
                     }
                 >
                     Current State
                 </NavLink>
             </div>
         </nav>
+    </header>
     );
 };

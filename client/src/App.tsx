@@ -7,7 +7,7 @@ import {AlertsPage} from "./pages/AlertsPage.tsx";
 const App = () => {
     return (<Router>
         <NavBar/>
-        <main className="max-w-4xl mx-auto px-4">
+        <main className="px-4">
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/alerts" element={<AlertsPage/>}/>
@@ -19,3 +19,4 @@ const App = () => {
 };
 
 export default App;
+
