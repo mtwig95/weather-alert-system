@@ -71,3 +71,7 @@ MONGO_URI=mongodb://localhost:27017/weather_alerts
 
 Set `TOMORROW_API_KEY` to an API key from Tomorrow.io and `MONGO_URI` to your MongoDB instance.
 
+https://github.com/user-attachments/assets/faa94145-c433-45fb-84b5-013e61818c4d
+
+
+
