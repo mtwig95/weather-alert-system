@@ -6,7 +6,9 @@ const alertSchema = new mongoose.Schema({
     operator: { type: String, required: true },
     threshold: { type: Number, required: true },
     description: { type: String },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    status: { type: String, enum: ['triggered', 'not_triggered'], default: 'not_triggered' },
+    lastChecked: { type: Date, default: null },
 });
 
 export const Alert = mongoose.model('Alert', alertSchema);
