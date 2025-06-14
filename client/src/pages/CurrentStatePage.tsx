@@ -9,7 +9,7 @@ export const CurrentStatePage = () => {
     const fetchAlerts = async () => {
         try {
             const res = await api.getAlerts();
-            setAlerts(res.data);
+            setAlerts(res);
         } catch (err) {
             console.error('Failed to fetch alerts', err);
         } finally {
@@ -28,7 +28,7 @@ export const CurrentStatePage = () => {
     }, []);
 
     if (loading) return <div>Loading current state...</div>;
-
+    console.log('alerts',alerts);
     if (!alerts || alerts.length === 0) return null;
 
     const triggeredAlerts = alerts.filter(alert => alert.status === 'triggered');
