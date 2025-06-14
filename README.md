@@ -1,59 +1,73 @@
-# 🌦️ Weather Alert System – Backend
-
-This is the backend server for the Weather Alert System, built with Node.js, Express, and TypeScript.
+# 🌦️ Weather Alert System - Fullstack App
+A full-stack web app for creating custom weather alerts by location and parameter.  
+Alerts are evaluated against live weather data from Tomorrow.io, and when triggered, they are displayed in real-time on the interface — giving users immediate feedback and a clear view of current conditions.
 
 ## 📦 Tech Stack
-- Node.js
-- Express
-- TypeScript
-- dotenv
-- cors
+| Layer        | Technology                | Why? |
+|--------------|---------------------------|------|
+| Frontend     | React, TypeScript         | Component-based UI with type safety |
+|              | Vite                      | Fast dev server and bundling for React |
+|              | Tailwind CSS              | Rapid styling using utility-first classes |
+| Backend      | Node.js, Express          | Lightweight, flexible server and API creation |
+|              | TypeScript                | Type safety for better DX and fewer bugs |
+|              | dotenv                    | Manage environment variables securely |
+|              | cors                      | Enable cross-origin requests from client |
+| Scheduler    | setInterval in Node       | Periodic background job to evaluate alerts |
+| Weather API  | Tomorrow.io               | Real-time weather data by location |
+| Database     | MongoDB                   | NoSQL document database |
+|              | Mongoose                  | Schema-based MongoDB modeling with validation |
 
 ## 🚀 Getting Started
 
-### 1. Install dependencies
+### 1. Clone the project
+
 ```bash
+git clone https://github.com/your-user/weather-alert-system
+cd weather-alert-system
+```
+
+### 2. Run frontend
+```bash
+cd client
 npm install
-```
-
-### 2. Create a `.env` file
-```
-PORT=3000
-TOMORROW_API_KEY=your_api_key_here
-```
-
-### 3. Run the server
-```bash
-npx ts-node server.ts
-```
-
-### 4. Test
-Open your browser or Postman to:
-```
-GET http://localhost:3000/ping
-```
-
-You should receive: `"pong"`
-
----
-
-## 🌐 Running the Frontend
-
-The frontend is located in the `client/` folder and built with Vite + React + TypeScript.
-
-### 1. Navigate to the client directory
-```bash
-cd ../client
-```
-
-### 2. Install dependencies
-```bash
-npm install
-```
-
-### 3. Start the development server
-```bash
 npm run dev
 ```
 
+### 3. Run backend
+```bash
+cd ../server
+npm install
+npx ts-node server.ts
+```
+
 The app will be available at: [http://localhost:5173](http://localhost:5173)
+---
+
+## Folder Structure
+```
+weather-alert-system/
+├── client/               # React + Vite frontend
+│   └── src/
+│       ├── components/   # Reusable components like StatusMessage, Timeline
+│       ├── pages/        # Pages like CreateAlertForm and CurrentStatePage
+│       ├── services/     # API helpers to interact with backend
+│       └── types/        # Shared type definitions
+├── server/               # Express backend in TypeScript
+│   ├── models/           # Mongoose schemas (e.g. Alert)
+│   ├── routes/           # API endpoints (e.g. /alerts, /weather)
+│   ├── services/         # Logic for calling Tomorrow.io
+│   ├── jobs/             # Background evaluation job for alerts
+│   └── server.ts         # Entry point for Express app
+└── README.md             # This file
+```
+
+### `.env` example
+
+```bash
+PORT=3000
+TOMORROW_API_KEY=your_tomorrow_api_key
+MONGO_URI=mongodb://localhost:27017/weather_alerts
+```
+
+Set `TOMORROW_API_KEY` to an API key from Tomorrow.io and `MONGO_URI` to your MongoDB instance.
+
