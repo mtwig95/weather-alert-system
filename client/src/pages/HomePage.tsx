@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusMessage } from '../components/StatusMessage.tsx';
+const BASE_URL = "https://weather-alert-system.onrender.com/";
 
 type WeatherData = {
   temperature: number;
@@ -19,7 +20,7 @@ export const HomePage = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`http://localhost:3000/weather?location=${encodeURIComponent(loc)}`);
+      const res = await fetch(`${BASE_URL}/weather?location=${encodeURIComponent(loc)}`);
       if (!res.ok) {
         const errData = await res.json();
         setError(errData.error || 'Unknown error');
