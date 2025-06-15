@@ -4,7 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import weatherRouter from './routes/weather';
 import alertRouter from './routes/alerts';
-import { evaluateAlerts } from './jobs/evaluateAlerts';
+import {evaluateAlerts} from './jobs/evaluateAlerts';
 
 dotenv.config();
 
@@ -22,8 +22,11 @@ app.use('/weather', weatherRouter);
 app.use('/alerts', alertRouter);
 
 setInterval(() => {
-    // evaluateAlerts();
+    evaluateAlerts();
 }, MIN_FOR_INTERVAL);
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+app.listen(3000, () => {
+    const now = new Date().toLocaleString();
+    console.log(`🚀 Server running on http://localhost:3000 at ${now}`);
+});
 

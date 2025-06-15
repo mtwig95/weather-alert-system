@@ -8,8 +8,6 @@ function sleep(ms: number) {
 }
 
 export const evaluateAlerts = async () => {
-    console.log('⏱️ Evaluating alerts...');
-
     const alerts = await Alert.find() as AlertDoc[];
     for (const alert of alerts) {
         try {
@@ -28,13 +26,15 @@ export const evaluateAlerts = async () => {
 
             alert.status = triggered ? 'triggered' : 'not_triggered';
             alert.lastChecked = new Date();
-
-            if (triggered && alert.status !== 'triggered') {
-                await sendEmail(alert.email, `🚨 Weather Alert Triggered for ${alert.location}`, `The condition ${alert.parameter} ${alert.operator} ${alert.threshold} was met.\nCurrent value: ${currentValue}`);
+            if (triggered && alert.status === 'triggered') { //fixme logic
+                try {
+                    await sendEmail(alert.email, `🚨 Weather Alert Triggered for ${alert.location}`, `The condition ${alert.parameter} ${alert.operator} ${alert.threshold} was met.\nCurrent value: ${currentValue}`);
+                } catch (err) {
+                    console.error("❌ Failed to send email:", err);
+                }
             }
 
             await alert.save();
-
 
         } catch (err) {
             console.error(`❌ Failed to evaluate alert for ${alert.location}`, err);
@@ -42,8 +42,7 @@ export const evaluateAlerts = async () => {
         //to prevent rate limit
         await sleep(1500);
     }
+}
 
-    console.log('✅ Alert evaluation done.');
-};
 
 
