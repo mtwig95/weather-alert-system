@@ -1,9 +1,14 @@
 import express from 'express';
-import {Alert} from '../models/Alert';
+import {
+  createAlert,
+  getAllAlerts,
+  deleteAlertById,
+  updateAlertById,
+} from '../services/alertService';
 
 const router = express.Router();
 
-router.post('/', async function (req, res) {
+router.post('/', async (req, res) => {
     const {location, parameter, operator, threshold, description, email} = req.body;
 
     if (!location || !parameter || !operator || threshold === undefined) {
@@ -12,21 +17,17 @@ router.post('/', async function (req, res) {
     }
 
     try {
-        const alert = new Alert({location, parameter, operator, threshold, description, email});
-        await alert.save();
-
+    const alert = await createAlert({ location, parameter, operator, threshold, description, email });
         res.status(201).json({message: 'Alert created', alert});
-        return;
     } catch (err) {
         console.error(err);
         res.status(500).json({error: 'Failed to create alert'});
-        return;
     }
 });
 
-router.get('/', async function (req, res) {
+router.get('/', async (_req, res) => {
     try {
-        const alerts = await Alert.find();
+    const alerts = await getAllAlerts();
         res.json(alerts);
     } catch (err) {
         console.error(err);
@@ -34,9 +35,9 @@ router.get('/', async function (req, res) {
     }
 });
 
-router.delete('/:id', async function (req, res) {
+router.delete('/:id', async (req, res) => {
     try {
-        const deleted = await Alert.findByIdAndDelete(req.params.id);
+    const deleted = await deleteAlertById(req.params.id);
         if (!deleted) {
             res.status(404).json({error: 'Alert not found'});
             return;
@@ -49,7 +50,7 @@ router.delete('/:id', async function (req, res) {
     }
 });
 
-router.put('/:id', async function (req, res) {
+router.put('/:id', async (req, res) => {
     const {location, parameter, operator, threshold, description, email} = req.body;
 
     if (!location || !parameter || !operator || threshold === undefined) {
@@ -58,15 +59,7 @@ router.put('/:id', async function (req, res) {
     }
 
     try {
-        const updated = await Alert.findByIdAndUpdate(req.params.id, {
-            location,
-            parameter,
-            operator,
-            threshold,
-            description,
-            email
-        }, {new: true});
-
+    const updated = await updateAlertById(req.params.id, { location, parameter, operator, threshold, description, email });
         if (!updated) {
             res.status(404).json({error: 'Alert not found'});
             return;

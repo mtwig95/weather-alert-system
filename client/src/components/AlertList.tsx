@@ -32,7 +32,6 @@ export const AlertList = ({alerts, loading, setAlerts}: AlertListProps) => {
 const handleUpdate = async (data: AlertFormData) => {
     if (!editingId) return;
         try {
-            //fixme
         const updatedAlert: Alert = { _id: editingId, ...data, status: 'not_triggered', lastChecked: null, createdAt: new Date().toISOString(), lastNotified: null, description: data.description ?? '' };
         const updated = await api.updateAlert(updatedAlert);
             setAlerts((prev) => prev.map((a) => (a._id === updated._id ? updated : a)));
