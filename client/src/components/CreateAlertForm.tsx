@@ -46,7 +46,7 @@ export const CreateAlertForm = ({ onAlertCreated }: CreateAlertFormProps) => {
 
     return (
         <div className="text-text font-sans">
-            <h2 className="text-2xl font-bold mb-6 text-center">⚠️ Create New Alert</h2>
+            <h2 className="text-xl mb-4 font-bold text-center max-h-[70vh] overflow-y-auto">⚠️ Create New Alert</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
