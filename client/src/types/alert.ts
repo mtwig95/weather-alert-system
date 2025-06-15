@@ -9,7 +9,7 @@ export type Alert = {
     lastChecked: string | null;
     createdAt: string;
     email: string;
-    lastNotified: string;
+    lastNotified: string | null;
 };
 
 //todo remove model
