@@ -8,7 +8,9 @@ import {evaluateAlerts} from './jobs/evaluateAlerts';
 
 dotenv.config();
 
-const MIN_FOR_INTERVAL = 5 * 60 * 1000;
+const PORT = process.env.PORT || 3000;
+
+const MIN_FOR_INTERVAL = 60 * 60 * 1000;
 mongoose.connect(process.env.MONGO_URI as string)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Mongo connection error:', err));
@@ -25,8 +27,8 @@ setInterval(() => {
     evaluateAlerts();
 }, MIN_FOR_INTERVAL);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     const now = new Date().toLocaleString();
-    console.log(`🚀 Server running on http://localhost:3000 at ${now}`);
+    console.log(`🚀 Server running on ${PORT} at ${now}`);
 });
 
