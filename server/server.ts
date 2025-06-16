@@ -10,7 +10,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-const MIN_FOR_INTERVAL = 60 * 60 * 1000;
+const MIN_FOR_INTERVAL = 5 * 60 * 1000;
 mongoose.connect(process.env.MONGO_URI as string)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Mongo connection error:', err));

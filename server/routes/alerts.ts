@@ -15,7 +15,6 @@ router.post('/', async (req, res) => {
         res.status(400).json({error: 'Missing required fields'});
         return;
     }
-
     try {
     const alert = await createAlert({ location, parameter, operator, threshold, description, email });
         res.status(201).json({message: 'Alert created', alert});
