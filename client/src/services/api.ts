@@ -1,4 +1,4 @@
-const BASE_URL = "https://weather-alert-system.onrender.com/";
+const BASE_URL = "https://weather-alert-system.onrender.com";
 // const BASE_URL = "http://localhost:3000";
 //todo fix structure
 export const api = {

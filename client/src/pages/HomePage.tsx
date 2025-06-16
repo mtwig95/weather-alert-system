@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusMessage } from '../components/StatusMessage.tsx';
-const BASE_URL = "https://weather-alert-system.onrender.com/";
+const BASE_URL = "https://weather-alert-system.onrender.com";
 
 type WeatherData = {
   temperature: number;
