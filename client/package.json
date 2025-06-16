@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build",
-//    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
