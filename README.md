@@ -85,4 +85,5 @@ The system is deployed with:
 
 ## 🧪 Demo
 
-https://github.com/user-attachments/assets/faa94145-c433-45fb-84b5-013e61818c4d
+
+https://github.com/user-attachments/assets/48190b19-f12f-429b-8d4e-296b0eb3a1cf
