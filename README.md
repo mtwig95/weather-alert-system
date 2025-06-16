@@ -87,3 +87,6 @@ The system is deployed with:
 
 
 https://github.com/user-attachments/assets/48190b19-f12f-429b-8d4e-296b0eb3a1cf
+
+
+![Screenshot 2025-06-16 at 19 57 32](https://github.com/user-attachments/assets/49f2ec5a-c8e7-4d2a-a238-92a2e5490c2f)
