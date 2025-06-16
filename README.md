@@ -16,6 +16,10 @@ Alerts are evaluated against live weather data from Tomorrow.io, and when trigge
 | Weather API  | Tomorrow.io               | Real-time weather data by location |
 | Database     | MongoDB                   | NoSQL document database |
 |              | Mongoose                  | Schema-based MongoDB modeling with validation |
+| Deployment     | Netlify                   | Static site hosting for the React frontend|
+|              | Render                  | Node.js server deployment |
+|      | MongoDB Atlas	                   | Cloud-hosted database with secure access control
+
 
 ## 🚀 Getting Started
 
@@ -71,7 +75,16 @@ MONGO_URI=mongodb://localhost:27017/weather_alerts
 
 Set `TOMORROW_API_KEY` to an API key from Tomorrow.io and `MONGO_URI` to your MongoDB instance.
 
+## 🌍 Deployment Overview
+
+The system is deployed with:
+
+- **Frontend** on [Netlify](https://weather-alert-system.netlify.app/)
+- **Backend** on [Render](https://weather-alert-system.onrender.com)
+- **Database**: MongoDB Atlas
+
+## 🧪 Demo
+
 https://github.com/user-attachments/assets/faa94145-c433-45fb-84b5-013e61818c4d
 
-
-
+📺 [Click to watch demo](https://github.com/user-attachments/assets/faa94145-c433-45fb-84b5-013e61818c4d)
