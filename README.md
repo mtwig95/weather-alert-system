@@ -86,5 +86,3 @@ The system is deployed with:
 ## 🧪 Demo
 
 https://github.com/user-attachments/assets/faa94145-c433-45fb-84b5-013e61818c4d
-
-📺 [Click to watch demo](https://github.com/user-attachments/assets/faa94145-c433-45fb-84b5-013e61818c4d)
