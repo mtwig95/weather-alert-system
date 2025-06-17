@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import {getWeatherForLocation} from "../services/weatherService";
+import { getWeatherForLocation } from '../services/weatherService';
 
 dotenv.config();
 

@@ -4,7 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import weatherRouter from './routes/weather';
 import alertRouter from './routes/alerts';
-import {evaluateAlerts} from './jobs/evaluateAlerts';
+import { evaluateAlerts } from './jobs/evaluateAlerts';
 
 dotenv.config();
 
@@ -21,18 +21,19 @@ app.use('/weather', weatherRouter);
 app.use('/alerts', alertRouter);
 
 if (process.env.NODE_ENV !== 'test') {
-  mongoose.connect(process.env.MONGO_URI as string)
+  mongoose
+    .connect(process.env.MONGO_URI as string)
     .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Mongo connection error:', err));
+    .catch((err) => console.error('Mongo connection error:', err));
 
-setInterval(() => {
+  setInterval(() => {
     evaluateAlerts();
-}, MIN_FOR_INTERVAL);
+  }, MIN_FOR_INTERVAL);
 
-app.listen(PORT, () => {
+  app.listen(PORT, () => {
     const now = new Date().toLocaleString();
     console.log(`🚀 Server running on ${PORT} at ${now}`);
-});
+  });
 }
 
 export default app;
