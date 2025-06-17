@@ -1,6 +1,6 @@
 const BASE_URL = "https://weather-alert-system.onrender.com";
 // const BASE_URL = "http://localhost:3000";
-//todo fix structure
+//fixme structure
 export const api = {
     getAlerts: async () => {
         const res = await fetch(`${BASE_URL}/alerts`);

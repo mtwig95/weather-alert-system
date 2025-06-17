@@ -19,10 +19,12 @@ describe('CurrentStatePage', () => {
         vi.clearAllMocks();
     });
 
-    it('shows loading message initially', () => {
+    it('shows loading message initially', async () => {
         (api.getAlerts as any).mockResolvedValue([]);
         render(<CurrentStatePage />);
-        expect(screen.getByText(/Loading current state.../i)).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText(/Loading current state.../i)).toBeInTheDocument();
+        });
     });
 
     it('renders no alert message if no triggered alerts', async () => {
@@ -44,7 +46,6 @@ describe('CurrentStatePage', () => {
 
         (api.getAlerts as any).mockResolvedValue(mockAlerts);
         render(<CurrentStatePage />);
-
         await waitFor(() => {
             expect(screen.getByText(/✅ All Clear/i)).toBeInTheDocument();
         });
@@ -69,7 +70,6 @@ describe('CurrentStatePage', () => {
 
         (api.getAlerts as any).mockResolvedValue(mockAlerts);
         render(<CurrentStatePage />);
-
         await waitFor(() => {
             expect(screen.getByText(/Jerusalem/)).toBeInTheDocument();
             expect(screen.getByText(/windSpeed > 50/)).toBeInTheDocument();
@@ -80,10 +80,8 @@ describe('CurrentStatePage', () => {
     it('handles fetch error gracefully', async () => {
         (api.getAlerts as any).mockRejectedValue(new Error('API Error'));
         render(<CurrentStatePage />);
-
         await waitFor(() => {
-            // כל עוד אין קריסה והמסך נעלם – עברנו
-            expect(screen.queryByText(/Loading current state.../)).not.toBeInTheDocument();
+            expect(screen.queryByText(/Loading current state/i)).not.toBeInTheDocument();
         });
     });
 });

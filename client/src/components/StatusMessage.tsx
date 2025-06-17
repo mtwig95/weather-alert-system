@@ -18,7 +18,8 @@ export const StatusMessage = ({ message, type, withSpinner }: Props) => {
     return (
         <div className={`${baseStyle} ${typeStyles[type]}`}>
             {withSpinner && (
-                <div className="animate-spin h-4 w-4 border-t-2 border-b-2 border-current rounded-full" />
+                <div role="status"
+                     className="animate-spin h-4 w-4 border-t-2 border-b-2 border-current rounded-full" />
             )}
             <span>{message}</span>
         </div>

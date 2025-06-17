@@ -53,8 +53,9 @@ export const CreateOrEditAlertForm = ({mode, onSubmit, initialData = {}}: Create
 
     return (<form onSubmit={handleSubmit} className="space-y-6 text-text">
             <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Location</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="location">Location</label>
                 <input
+                    id="location"
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
@@ -64,8 +65,9 @@ export const CreateOrEditAlertForm = ({mode, onSubmit, initialData = {}}: Create
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Email for notifications</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="email">Email for notifications</label>
                 <input
+                    id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -75,8 +77,9 @@ export const CreateOrEditAlertForm = ({mode, onSubmit, initialData = {}}: Create
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Parameter</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="parameter">Parameter</label>
                 <select
+                    id="parameter"
                     value={parameter}
                     onChange={(e) => setParameter(e.target.value as any)}
                     className="w-full bg-[#1A2233] text-text px-4 py-2 rounded-lg"
@@ -89,8 +92,9 @@ export const CreateOrEditAlertForm = ({mode, onSubmit, initialData = {}}: Create
 
             <div className="flex gap-4">
                 <div className="w-1/3">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">Operator</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="operator">Operator</label>
                     <select
+                        id="operator"
                         value={operator}
                         onChange={(e) => setOperator(e.target.value as any)}
                         className="w-full bg-[#1A2233] text-text px-3 py-2 rounded-lg"
@@ -101,8 +105,9 @@ export const CreateOrEditAlertForm = ({mode, onSubmit, initialData = {}}: Create
                 </div>
 
                 <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-300 mb-1">Threshold</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="threshold">Threshold</label>
                     <input
+                        id="threshold"
                         type="number"
                         value={threshold}
                         onChange={(e) => setThreshold(Number(e.target.value))}
@@ -113,8 +118,9 @@ export const CreateOrEditAlertForm = ({mode, onSubmit, initialData = {}}: Create
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Description (optional)</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1" htmlFor="description">Description (optional)</label>
                 <input
+                    id="description"
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
