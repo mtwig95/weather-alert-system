@@ -1,7 +1,7 @@
-import {Alert} from '../models/Alert';
-import {getWeatherForLocation} from '../services/weatherService';
-import {AlertDoc} from '../types/alert';
-import {sendEmail} from '../utils/sendEmail';
+import { Alert } from '../models/Alert';
+import { getWeatherForLocation } from '../services/weatherService';
+import { AlertDoc } from '../types/alert';
+import { sendEmail } from '../utils/sendEmail';
 
 function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -24,25 +24,32 @@ export const evaluateAlerts = async () => {
                 triggered = true;
             }
 
-            alert.status = triggered ? 'triggered' : 'not_triggered';
-            alert.lastChecked = new Date();
-            if (triggered && alert.status === 'triggered') { //fixme logic
+            if (triggered) {
+  if (alert.status !== 'triggered') {
+                alert.status = 'triggered';
+    alert.lastNotified = new Date();
+
                 try {
-                    await sendEmail(alert.email, `🚨 Weather Alert Triggered for ${alert.location}`, `The condition ${alert.parameter} ${alert.operator} ${alert.threshold} was met.\nCurrent value: ${currentValue}`);
+                    await sendEmail(
+                        alert.email,
+                        `🚨 Weather Alert Triggered for ${alert.location}`,
+                        `The condition ${alert.parameter} ${alert.operator} ${alert.threshold} was met.\nCurrent value: ${currentValue}`
+                    );
                 } catch (err) {
                     console.error("❌ Failed to send email:", err);
                 }
+  }
+            } else {
+                alert.status = 'not_triggered';
             }
 
+            alert.lastChecked = new Date();
             await alert.save();
 
         } catch (err) {
             console.error(`❌ Failed to evaluate alert for ${alert.location}`, err);
         }
-        //to prevent rate limit
-        await sleep(1500);
+
+        await sleep(1500); // prevent rate limit
     }
-}
-
-
-
+};

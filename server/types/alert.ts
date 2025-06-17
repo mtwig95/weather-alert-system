@@ -8,7 +8,7 @@ export interface AlertDoc extends Document {
     description?: string;
     createdAt: Date;
     status?: 'triggered' | 'not_triggered';
-    lastChecked?: Date;
     email: string;
-    lastNotified: string;
+    lastChecked: Date | null;
+    lastNotified: Date | null;
 }
