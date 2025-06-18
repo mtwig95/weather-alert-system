@@ -17,7 +17,6 @@ export const AlertsPage = () => {
       const data = await api.getAlerts();
       setAlerts(data);
     } catch (err) {
-      console.error('Failed to load alerts', err);
       setError('Something went wrong while loading your alerts. Try refreshing the page.');
     } finally {
       setLoading(false);

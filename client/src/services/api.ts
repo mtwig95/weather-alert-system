@@ -38,7 +38,6 @@ export const api = {
     },
 
     updateAlert: async (updatedAlert: any) => {
-        console.log('updatedAlert', updatedAlert);
         const res = await fetch(`${BASE_URL}/alerts/${updatedAlert._id}`, {
             method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(updatedAlert),
         });

@@ -23,7 +23,6 @@ export const AlertList = ({ alerts, loading, setAlerts, error }: AlertListProps)
       setAlerts((prev) => prev.filter((a) => a._id !== id));
     } catch (err) {
       alert('Failed to delete alert');
-      console.error(err);
     }
   };
 
@@ -50,7 +49,6 @@ export const AlertList = ({ alerts, loading, setAlerts, error }: AlertListProps)
       setEditForm(null);
     } catch (err) {
       alert('Failed to update alert');
-      console.error(err);
     }
   };
 

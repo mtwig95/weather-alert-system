@@ -17,7 +17,6 @@ export const CurrentStatePage = () => {
       setAlerts(res);
       setError(null);
     } catch (err: any) {
-      console.error('Failed to fetch alerts', err);
       setError(err?.message || 'Unknown error');
     } finally {
       setLoading(false);

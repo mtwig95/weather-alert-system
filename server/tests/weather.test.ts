@@ -61,6 +61,6 @@ describe('GET /weather', () => {
     const res = await request(app).get('/weather').query({ location: 'abcdef' });
 
     expect(res.statusCode).toBe(500);
-    expect(res.body.error).toMatch(/Failed to fetch weather/);
+    expect(res.body.error).toBe('Invalid location: "abcdef"');
   });
 });

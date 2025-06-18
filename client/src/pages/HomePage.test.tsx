@@ -49,6 +49,10 @@ describe('HomePage', () => {
     );
 
     render(<HomePage />);
-    await waitFor(() => expect(screen.getByText(/invalid location/i)).toBeInTheDocument());
+await waitFor(() =>
+  expect(
+    screen.getByText(/location not found/i)
+  ).toBeInTheDocument()
+);
   });
 });

@@ -15,9 +15,6 @@ export const evaluateAlerts = async () => {
       // todo add as param
       const currentValue =
         weather[alert.parameter as 'temperature' | 'windSpeed' | 'precipitation'];
-      console.log(
-        `weather ${JSON.stringify(weather)} => ${currentValue} for alert ${JSON.stringify(alert)}`,
-      );
 
       let triggered = false;
 

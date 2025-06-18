@@ -26,7 +26,6 @@ router.post('/', async (req, res) => {
     });
     res.status(201).json({ message: 'Alert created', alert });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Failed to create alert' });
   }
 });
@@ -36,7 +35,6 @@ router.get('/', async (_req, res) => {
     const alerts = await getAllAlerts();
     res.json(alerts);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Failed to fetch alerts' });
   }
 });
@@ -51,7 +49,6 @@ router.delete('/:id', async (req, res) => {
 
     res.status(204).send();
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Failed to delete alert' });
   }
 });
@@ -80,7 +77,6 @@ router.put('/:id', async (req, res) => {
 
     res.json(updated);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Failed to update alert' });
   }
 });
