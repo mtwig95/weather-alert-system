@@ -11,12 +11,3 @@ export type Alert = {
   email: string;
   lastNotified: string | null;
 };
-
-//todo remove model
-export type NewAlert = {
-  location: string;
-  parameter: 'temperature' | 'windSpeed' | 'precipitation';
-  operator: '>' | '<';
-  threshold: number;
-  description: string;
-};

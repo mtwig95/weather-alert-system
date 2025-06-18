@@ -1,5 +1,5 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-//fixme structure
+
 export const api = {
   getWeather: async (location: string) => {
     const res = await fetch(`${BASE_URL}/weather?location=${encodeURIComponent(location)}`);
@@ -24,7 +24,6 @@ export const api = {
     description: string,
     email: string,
   ) => {
-    // todo: remove threshold: Number(threshold)?, add parameter as 'temperature' | 'windSpeed' | 'precipitation' , add operator as '>' | '<'
     const res = await fetch(`${BASE_URL}/alerts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -12,7 +12,6 @@ export const evaluateAlerts = async () => {
   for (const alert of alerts) {
     try {
       const weather = await getWeatherForLocation(alert.location);
-      // todo add as param
       const currentValue =
         weather[alert.parameter as 'temperature' | 'windSpeed' | 'precipitation'];
 
@@ -51,6 +50,6 @@ export const evaluateAlerts = async () => {
       console.error(`❌ Failed to evaluate alert for ${alert.location}`, err);
     }
 
-    await sleep(1500); // prevent rate limit
+    await sleep(1500);
   }
 };

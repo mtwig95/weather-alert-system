@@ -25,7 +25,7 @@ describe('StatusMessage', () => {
 
   it('renders spinner when withSpinner is true', () => {
     render(<StatusMessage message="Loading..." type="loading" withSpinner />);
-    const spinner = screen.getByRole('status', { hidden: true }); // Fallback check for spinner-like element
+    const spinner = screen.getByRole('status', { hidden: true });
     expect(spinner).toBeInTheDocument();
   });
 

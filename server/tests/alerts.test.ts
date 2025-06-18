@@ -44,7 +44,6 @@ describe('Alerts API', () => {
   });
 
   it('should get all alerts', async () => {
-    // add another alert first
     await request(app)
       .post('/alerts')
       .send({ ...validAlert, location: 'Haifa' });
@@ -58,7 +57,6 @@ describe('Alerts API', () => {
   });
 
   it('should delete an alert', async () => {
-    // create alert
     const createRes = await request(app)
       .post('/alerts')
       .send({ ...validAlert, location: 'Jerusalem' });
@@ -68,7 +66,6 @@ describe('Alerts API', () => {
 
     expect(deleteRes.statusCode).toBe(204);
 
-    // verify deletion
     const getRes = await request(app).get('/alerts');
     const deleted = getRes.body.find((a: any) => a._id === id);
     expect(deleted).toBeUndefined();
@@ -92,7 +89,7 @@ describe('Alerts API', () => {
   });
 
   it('should return 404 for deleting non-existent alert', async () => {
-    const res = await request(app).delete('/alerts/648e2beae1a48f5c45b12345'); // fake ID
+    const res = await request(app).delete('/alerts/648e2beae1a48f5c45b12345');
     expect(res.statusCode).toBe(404);
   });
 
