@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react';
 import type { Alert } from '../types/alert';
 import { api } from '../services/api.ts';
+import { StatusMessage } from '../components/StatusMessage';
 
 export const CurrentStatePage = () => {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchAlerts = async () => {
     try {
       const res = await api.getAlerts();
+      if (!Array.isArray(res)) {
+        throw new Error('Unexpected response format');
+      }
       setAlerts(res);
-    } catch (err) {
+      setError(null);
+    } catch (err: any) {
       console.error('Failed to fetch alerts', err);
+      setError(err?.message || 'Unknown error');
     } finally {
       setLoading(false);
     }
@@ -26,7 +33,15 @@ export const CurrentStatePage = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background text-text flex items-center justify-center font-sans">
-        <p>Loading current state...</p>
+        <StatusMessage type="loading" message="Loading current state..." withSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background text-text flex items-center justify-center font-sans">
+        <StatusMessage type="error" message={`Error: ${error}`} />
       </div>
     );
   }
@@ -52,6 +67,12 @@ export const CurrentStatePage = () => {
                 <p className="text-lg font-semibold">📍 {alert.location}</p>
                 <p className="text-sm text-red-300 mt-1">
                   {alert.parameter} {alert.operator} {alert.threshold}
+                </p>
+                <p className="text-sm italic text-gray-500">
+                  {alert.description}
+                </p>
+                <p className="text-sm italic text-gray-500">
+                  {alert.email}
                 </p>
                 {alert.lastChecked && (
                   <p className="text-xs text-gray-400 mt-2">

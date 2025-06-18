@@ -36,7 +36,9 @@ export const evaluateAlerts = async () => {
             await sendEmail(
               alert.email,
               `🚨 Weather Alert Triggered for ${alert.location}`,
-              `The condition ${alert.parameter} ${alert.operator} ${alert.threshold} was met.\nCurrent value: ${currentValue}`,
+              `The condition ${alert.parameter} ${alert.operator} ${alert.threshold} was met.\n` +
+                `Current value: ${currentValue}\n\n` +
+                `📌 Description: ${alert.description || 'No description provided.'}`,
             );
           } catch (err) {
             console.error('❌ Failed to send email:', err);
