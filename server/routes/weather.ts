@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   const location = req.query.location as string;
-
   if (!location) {
     res.status(400).json({ error: 'Missing location parameter' });
     return;
@@ -17,9 +16,11 @@ router.get('/', async (req, res) => {
   try {
     const weather = await getWeatherForLocation(location);
     res.json({ location, ...weather });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch weather data' });
+    const status = err.status || 500;
+    const message = err.message || 'Failed to fetch weather data';
+    res.status(status).json({ error: message });
   }
 });
 

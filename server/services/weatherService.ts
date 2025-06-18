@@ -12,11 +12,12 @@ export async function getWeatherForLocation(location: string) {
     const response = await axios.get(url);
 
     const data = response.data;
-
     const values = data?.data?.timelines?.[0]?.intervals?.[0]?.values;
 
     if (!values) {
-      throw new Error(`Weather data not found for this location`);
+      const error = new Error(`Weather data not found for this location`);
+      (error as any).status = 400;
+      throw error;
     }
 
     return {
@@ -28,10 +29,13 @@ export async function getWeatherForLocation(location: string) {
     if (err.response?.status === 400) {
       const message = err.response?.data?.message || '';
       if (message.includes('failed to query by the term')) {
-        throw new Error(`Invalid location: "${location}"`);
+        const error = new Error(`Invalid location: "${location}"`);
+        (error as any).status = 400;
+        throw error;
       }
     }
-    // throw the original error if not handled
+
+    (err as any).status = err.status || 500;
     throw err;
   }
 }

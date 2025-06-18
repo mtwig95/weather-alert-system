@@ -23,9 +23,18 @@ export const HomePage = () => {
       const data = await api.getWeather(loc);
       setWeather(data);
     } catch (err: any) {
-      setWeather(null);
-      setError(err.message || 'Failed to load weather');
-    } finally {
+        setWeather(null);
+        const msg = err.message || '';
+
+        if (msg.includes('Invalid location')) {
+            setError('⚠️ Location not found. Please try another city.');
+        } else if (msg.includes('429')) {
+            setError('🚫 Too many requests. Please wait a bit and try again.');
+        } else {
+            setError('Failed to load weather data. Please try again later.');
+        }
+    }
+ finally {
       setLoading(false);
     }
   };
