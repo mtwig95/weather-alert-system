@@ -67,12 +67,8 @@ export const CurrentStatePage = () => {
                 <p className="text-sm text-red-300 mt-1">
                   {alert.parameter} {alert.operator} {alert.threshold}
                 </p>
-                <p className="text-sm italic text-gray-500">
-                  {alert.description}
-                </p>
-                <p className="text-sm italic text-gray-500">
-                  {alert.email}
-                </p>
+                <p className="text-sm italic text-gray-500">{alert.description}</p>
+                <p className="text-sm italic text-gray-500">{alert.email}</p>
                 {alert.lastChecked && (
                   <p className="text-xs text-gray-400 mt-2">
                     ⏱ Last checked: {new Date(alert.lastChecked).toLocaleString()}
