@@ -12,14 +12,14 @@ Alerts are evaluated against live weather data from Tomorrow.io, and when trigge
 |              | TypeScript                | Type safety for better DX and fewer bugs |
 |              | dotenv                    | Manage environment variables securely |
 |              | cors                      | Enable cross-origin requests from client |
+|              | nodemailer                | Send email notifications when alerts are triggered |
 | Scheduler    | setInterval in Node       | Periodic background job to evaluate alerts |
 | Weather API  | Tomorrow.io               | Real-time weather data by location |
 | Database     | MongoDB                   | NoSQL document database |
 |              | Mongoose                  | Schema-based MongoDB modeling with validation |
 | Deployment     | Netlify                   | Static site hosting for the React frontend|
 |              | Render                  | Node.js server deployment |
-|      | MongoDB Atlas	                   | Cloud-hosted database with secure access control
-
+|              | MongoDB Atlas             | Cloud-hosted database with secure access control |
 
 ## 🚀 Getting Started
 
@@ -51,26 +51,38 @@ The app will be available at: [http://localhost:5173](http://localhost:5173)
 ```
 weather-alert-system/
 ├── client/               # React + Vite frontend
-│   └── src/
-│       ├── components/   # Reusable components like StatusMessage, Timeline
-│       ├── pages/        # Pages like CreateAlertForm and CurrentStatePage
-│       ├── services/     # API helpers to interact with backend
-│       └── types/        # Shared type definitions
+│   ├── src/
+│   │   ├── components/     # Reusable components like StatusMessage, Timeline
+│   │   ├── pages/          # Pages like CreateAlertForm and CurrentStatePage
+│   │   ├── services/       # API helpers to interact with backend
+│   │   └── types/          # Shared type definitions
+│   └── .env                # Frontend env file (e.g. VITE_API_BASE_URL)
 ├── server/               # Express backend in TypeScript
 │   ├── models/           # Mongoose schemas (e.g. Alert)
 │   ├── routes/           # API endpoints (e.g. /alerts, /weather)
 │   ├── services/         # Logic for calling Tomorrow.io
+│   ├── utils/            # Utility functions like sendEmail.ts
 │   ├── jobs/             # Background evaluation job for alerts
-│   └── server.ts         # Entry point for Express app
+│   ├── server.ts           # Entry point for Express app
+│   └── .env                # Backend env file (e.g. API keys, DB, mail)
 └── README.md             # This file
 ```
 
-### `.env` example
+### 🔐 Environment Variables
+
+client/.env (Frontend)
+```bash
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+server/.env (Backend)
 
 ```bash
 PORT=3000
 TOMORROW_API_KEY=your_tomorrow_api_key
 MONGO_URI=mongodb://localhost:27017/weather_alerts
+EMAIL_USER=your_email@example.com
+EMAIL_PASS=your_email_password_or_app_password
 ```
 
 Set `TOMORROW_API_KEY` to an API key from Tomorrow.io and `MONGO_URI` to your MongoDB instance.
