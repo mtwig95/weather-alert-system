@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 3000;
 const MIN_FOR_INTERVAL = 60 * 60 * 1000;
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: '*' }));
+
 app.use(express.json());
 
 app.use('/weather', weatherRouter);
@@ -21,6 +22,7 @@ app.use('/weather', weatherRouter);
 app.use('/alerts', alertRouter);
 
 if (process.env.NODE_ENV !== 'test') {
+  console.log('NODE_ENV: test',process.env.NODE_ENV );
   mongoose
     .connect(process.env.MONGO_URI as string)
     .then(() => console.log('Connected to MongoDB'))

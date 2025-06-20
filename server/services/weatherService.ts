@@ -7,6 +7,8 @@ const TOMORROW_API_KEY = process.env.TOMORROW_API_KEY;
 const BASE_URL = 'https://api.tomorrow.io/v4/timelines';
 
 export async function getWeatherForLocation(location: string) {
+  console.log('getWeatherForLocation in service', location);
+
   const url = `${BASE_URL}?location=${encodeURIComponent(location)}&fields=temperature,windSpeed,precipitationIntensity&timesteps=current&apikey=${TOMORROW_API_KEY}`;
   try {
     const response = await axios.get(url);

@@ -8,6 +8,8 @@ import {
 
 const router = express.Router();
 
+console.log('📢 /alerts route is active');
+
 router.post('/', async (req, res) => {
   const { location, parameter, operator, threshold, description, email } = req.body;
 

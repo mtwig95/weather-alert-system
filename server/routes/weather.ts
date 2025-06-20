@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   const location = req.query.location as string;
+  console.log('in routes: location', location);
   if (!location) {
     res.status(400).json({ error: 'Missing location parameter' });
     return;

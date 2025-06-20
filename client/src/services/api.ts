@@ -2,6 +2,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const api = {
   getWeather: async (location: string) => {
+    console.log(`Get weather from ${location} - ${BASE_URL}`);
     const res = await fetch(`${BASE_URL}/weather?location=${encodeURIComponent(location)}`);
     if (!res.ok) {
       const err = await res.json();
